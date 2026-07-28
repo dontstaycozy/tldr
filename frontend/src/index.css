@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 85%; /* Zooms out the entire UI by 15% */
+  }
+  body {
+    @apply bg-parchment text-obsidian font-body antialiased;
+  }
+}
+
+/* Custom Utilities for the Grid / Borders */
+@layer utilities {
+  .border-primary {
+    @apply border-obsidian;
+  }
+  .border-b-primary {
+    @apply border-b border-obsidian;
+  }
+  .border-t-primary {
+    @apply border-t border-obsidian;
+  }
+  .border-r-primary {
+    @apply border-r border-obsidian;
+  }
+  .border-l-primary {
+    @apply border-l border-obsidian;
+  }
+  .rule-thick {
+    @apply border-b-2 border-obsidian;
+  }
+  .rule-thin {
+    @apply border-b border-obsidian;
+  }
+  .newspaper-columns {
+    column-count: 3;
+    column-gap: 2rem;
+  }
+  @media (max-width: 768px) {
+    .newspaper-columns {
+      column-count: 1;
+    }
+  }
+}
