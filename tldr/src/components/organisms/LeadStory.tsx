@@ -18,7 +18,7 @@ export function LeadStory({ headline, leadParagraph, image, keyPoints }: LeadSto
       <div className="md:w-[65%] pr-8 md:border-r border-obsidian">
         <Headline variant="large" className="mb-6">{headline}</Headline>
         <BodyText variant="lead" className="mb-8">{leadParagraph}</BodyText>
-        
+
         {image && (
           <div className="mt-8">
             <img src={image} alt="Story visual" className="w-full h-auto aspect-video object-cover grayscale" />
@@ -28,17 +28,17 @@ export function LeadStory({ headline, leadParagraph, image, keyPoints }: LeadSto
           </div>
         )}
       </div>
-      
+
       {/* Right Column - 35% */}
       <div className="md:w-[35%] pl-4">
         <Label className="block mb-6 border-b border-obsidian pb-2">AT A GLANCE</Label>
         <div>
           {keyPoints.map((kp, idx) => (
-            <KeyPoint 
-              key={idx} 
-              title={kp.title} 
-              text={kp.text} 
-              isLast={idx === keyPoints.length - 1} 
+            <KeyPoint
+              key={idx}
+              title={kp.title}
+              text={kp.text}
+              isLast={idx === keyPoints.length - 1}
             />
           ))}
         </div>

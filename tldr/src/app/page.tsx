@@ -27,33 +27,63 @@ const placeholderData: NewspaperData = {
 
 export default function Home() {
   const [appState, setAppState] = useState<'upload' | 'processing' | 'output'>('upload');
+  const [newspaperData, setNewspaperData] = useState<NewspaperData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleFileSelect = (file: File) => {
+  const handleFileSelect = async (file: File) => {
     console.log("File selected:", file.name);
     setAppState('processing');
+    setError(null);
     
-    // Simulate backend processing time
-    setTimeout(() => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate newspaper');
+      }
+
+      const data = await response.json();
+      setNewspaperData(data);
       setAppState('output');
-    }, 2500);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'An unexpected error occurred.');
+      setAppState('upload');
+    }
   };
 
   const handleReset = () => {
     setAppState('upload');
+    setNewspaperData(null);
+    setError(null);
   };
 
   if (appState === 'upload' || appState === 'processing') {
     return (
-      <PressRoomTemplate 
-        onFileSelect={handleFileSelect} 
-        isLoading={appState === 'processing'} 
-      />
+      <div className="relative">
+        {error && (
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50">
+            {error}
+          </div>
+        )}
+        <PressRoomTemplate 
+          onFileSelect={handleFileSelect} 
+          isLoading={appState === 'processing'} 
+        />
+      </div>
     );
   }
 
   return (
     <FrontPageTemplate 
-      data={placeholderData} 
+      data={newspaperData || placeholderData} 
       onReset={handleReset} 
     />
   );

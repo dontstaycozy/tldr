@@ -28,7 +28,7 @@ export function FrontPageTemplate({ data, onReset }: FrontPageTemplateProps) {
   const targetRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadPDF = () => {
-    generatePDF(targetRef, { 
+    generatePDF(targetRef, {
       filename: 'tldr-front-page.pdf',
       page: { margin: 10 }
     });
@@ -47,22 +47,22 @@ export function FrontPageTemplate({ data, onReset }: FrontPageTemplateProps) {
           </div>
 
           {/* Section B: The Lead Story */}
-          <LeadStory 
-            headline={data.keyPoints.length > 0 ? "Global Markets React to Unprecedented Policy Shifts" : data.headline}
+          <LeadStory
+            headline={data.headline}
             leadParagraph={data.leadParagraph}
             image={data.image}
             keyPoints={data.keyPoints}
           />
 
           {/* Section C: The Body */}
-          <NewspaperBody 
+          <NewspaperBody
             columns={data.bodyColumns}
             pullQuotes={data.pullQuotes}
           />
 
           {/* Footer */}
           <footer className="w-full border-t border-obsidian mt-24 py-8 flex justify-between items-center print:hidden">
-            <Headline variant="small" className="text-2xl tracking-tighter">tldr</Headline>
+            <Headline variant="small" className="text-5xl tracking-tighter">tldr <span className="text-sm font-sans text-obsidian/50 tracking-normal ml-2">by cozysharkmurks</span></Headline>
             <div className="flex gap-6">
               <Label className="cursor-pointer hover:underline">Terms and Conditions</Label>
               <Label className="cursor-pointer hover:underline">Privacy</Label>
@@ -71,7 +71,7 @@ export function FrontPageTemplate({ data, onReset }: FrontPageTemplateProps) {
           </footer>
         </div>
       </div>
-      
+
       <FloatingControls onReset={onReset} onDownload={handleDownloadPDF} />
     </>
   );
