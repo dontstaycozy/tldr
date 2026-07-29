@@ -35,7 +35,7 @@ export function FrontPageTemplate({ data, onReset }: FrontPageTemplateProps) {
   const handleDownloadPDF = () => {
     generatePDF(targetRef, {
       filename: 'tldr-front-page.pdf',
-      page: { margin: 10 }
+      page: { margin: 0, format: 'letter' },
     });
   };
 
@@ -66,8 +66,8 @@ export function FrontPageTemplate({ data, onReset }: FrontPageTemplateProps) {
           />
 
           {/* Footer */}
-          <footer className="w-full border-t border-obsidian mt-24 py-8 flex justify-between items-center print:hidden">
-            <Headline variant="small" className="text-5xl tracking-tighter">tldr <span className="text-sm font-sans text-obsidian/50 tracking-normal ml-2">by cozysharkmurks</span></Headline>
+          <footer data-html2canvas-ignore="true" className="w-full border-t border-obsidian mt-24 py-8 flex justify-between items-center print:hidden">
+            <Headline variant="small" className="text-5xl tracking-tighter">tldr <span className="text-sm font-sans text-obsidian opacity-50 tracking-normal ml-2">by cozysharkmurks</span></Headline>
             <div className="flex gap-6">
               <Label className="cursor-pointer hover:underline" onClick={() => setIsTermsOpen(true)}>Terms and Conditions</Label>
               <Label className="cursor-pointer hover:underline" onClick={() => setIsPrivacyOpen(true)}>Privacy</Label>

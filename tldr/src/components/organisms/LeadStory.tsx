@@ -22,7 +22,7 @@ export function LeadStory({ headline, leadParagraph, image, keyPoints }: LeadSto
         {image && (
           <div className="mt-8">
             <img src={image} alt="Story visual" className="w-full h-auto aspect-video object-cover grayscale" />
-            <p className="font-headline italic text-xs mt-2 text-obsidian/70">
+            <p className="font-headline italic text-xs mt-2 text-obsidian opacity-70">
               Generated visual representation of the subject matter.
             </p>
           </div>
