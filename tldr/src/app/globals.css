@@ -5,18 +5,19 @@
   --color-obsidian: #181200;
   --color-muted-gold: #CBBF9C;
   --color-deep-sand: #998F6E;
-  
+
   --font-headline: "Playfair Display", serif;
   --font-body: "Merriweather", serif;
   --font-sans: "Inter", sans-serif;
-  
+
   --spacing-grid: 8px;
 }
 
 @layer base {
   html {
-    font-size: 85%; /* Zooms out the entire UI by 15% */
+    font-size: 75%;
   }
+
   body {
     background-color: var(--color-parchment);
     color: var(--color-obsidian);
@@ -30,34 +31,42 @@
   .border-primary {
     border-color: var(--color-obsidian);
   }
+
   .border-b-primary {
     border-bottom-width: 1px;
     border-color: var(--color-obsidian);
   }
+
   .border-t-primary {
     border-top-width: 1px;
     border-color: var(--color-obsidian);
   }
+
   .border-r-primary {
     border-right-width: 1px;
     border-color: var(--color-obsidian);
   }
+
   .border-l-primary {
     border-left-width: 1px;
     border-color: var(--color-obsidian);
   }
+
   .rule-thick {
     border-bottom-width: 2px;
     border-color: var(--color-obsidian);
   }
+
   .rule-thin {
     border-bottom-width: 1px;
     border-color: var(--color-obsidian);
   }
+
   .newspaper-columns {
     column-count: 3;
     column-gap: 2rem;
   }
+
   @media (max-width: 768px) {
     .newspaper-columns {
       column-count: 1;
