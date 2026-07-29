@@ -1,8 +1,10 @@
-
+import { useState } from 'react';
 import { Dropzone } from '../molecules/Dropzone';
 import { TopNav } from '../organisms/TopNav';
 import { Headline } from '../atoms/Headline';
 import { Label } from '../atoms/Label';
+import { ContactModal } from '../organisms/ContactModal';
+import { DocumentModal } from '../organisms/DocumentModal';
 
 interface PressRoomTemplateProps {
   onFileSelect: (file: File) => void;
@@ -10,6 +12,10 @@ interface PressRoomTemplateProps {
 }
 
 export function PressRoomTemplate({ onFileSelect, isLoading }: PressRoomTemplateProps) {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="w-full px-8 mb-16">
@@ -40,11 +46,20 @@ export function PressRoomTemplate({ onFileSelect, isLoading }: PressRoomTemplate
       <footer className="w-full border-t border-obsidian mt-16 px-8 py-6 flex justify-between items-center">
         <Headline variant="small" className="text-5xl tracking-tighter">tldr <span className="text-sm font-sans text-obsidian/50 tracking-normal ml-2">by cozysharkmurks</span></Headline>
         <div className="flex gap-6">
-          <Label className="cursor-pointer hover:underline">Terms and Conditions</Label>
-          <Label className="cursor-pointer hover:underline">Privacy</Label>
-          <Label className="cursor-pointer hover:underline">Contact</Label>
+          <Label className="cursor-pointer hover:underline" onClick={() => setIsTermsOpen(true)}>Terms and Conditions</Label>
+          <Label className="cursor-pointer hover:underline" onClick={() => setIsPrivacyOpen(true)}>Privacy</Label>
+          <Label className="cursor-pointer hover:underline" onClick={() => setIsContactOpen(true)}>Contact</Label>
         </div>
       </footer>
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <DocumentModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} title="Privacy Policy">
+        <p>This is a placeholder for the Privacy Policy.</p>
+        <p>Your data is handled with care. More details to come.</p>
+      </DocumentModal>
+      <DocumentModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} title="Terms and Conditions">
+        <p>This is a placeholder for the Terms and Conditions.</p>
+        <p>By using this service, you agree to our standard terms. More details to come.</p>
+      </DocumentModal>
     </div>
   );
 }
